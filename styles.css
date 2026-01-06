@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    input[type=range] { 
+        @apply h-1.5;
+    }
+
+    .slider-label { 
+        @apply text-xs font-medium text-slate-500 uppercase;
+    }
+
+    .room-card { 
+        @apply bg-white p-4 rounded-xl border border-slate-200 shadow-sm transition-all hover:shadow-md;
+    }
+
+    .sim-active { 
+        @apply ring-2 ring-orange-500 border-orange-500 bg-orange-50;
+    }
+
+    .sim-indicator { 
+        @apply animate-pulse;
+    }
+
+    .tab-btn { 
+        @apply px-4 py-2 rounded-lg font-semibold text-sm transition-all;
+    }
+
+    .tab-btn.active { 
+        @apply bg-indigo-600 text-white;
+    }
+
+    .tab-btn.inactive { 
+        @apply bg-slate-100 text-slate-700 hover:bg-slate-200;
+    }
+
+    .tab-content { 
+        @apply hidden;
+    }
+
+    .tab-content.active { 
+        @apply block;
+    }
+}
+
+@keyframes pulse-ring {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.sim-indicator {
+    animation: pulse-ring 2s infinite;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "hfis-energy-dashboard",
+  "version": "1.0.0",
+  "description": "Hierarchical Fuzzy Inference System for Home Energy Efficiency Analysis",
+  "main": "index.html",
+  "scripts": {
+    "watch": "tailwindcss -i ./styles.css -o ./output.css --watch",
+    "build": "tailwindcss -i ./styles.css -o ./output.css"
+  },
+  "keywords": [
+    "fuzzy-logic",
+    "energy-efficiency",
+    "mamdani-inference",
+    "hfis"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.0"
+  }
+}

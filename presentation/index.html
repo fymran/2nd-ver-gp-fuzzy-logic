@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Fuzzy Inference System - Presentation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar sticky">
+        <div class="nav-container">
+            <h2>HFIS Presentation</h2>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#model">Model</a></li>
+                <li><a href="#implementation">Implementation</a></li>
+                <li><a href="#integration">Integration</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Hierarchical Fuzzy Inference System</h1>
+            <h2>Home Energy Efficiency Analysis</h2>
+            <p>A comprehensive fuzzy expert system for intelligent multi-room energy optimization</p>
+            <button class="cta-button" onclick="document.getElementById('model').scrollIntoView({ behavior: 'smooth' })">Explore</button>
+        </div>
+        <div class="hero-preview">
+            <canvas id="heroChart" width="400" height="300"></canvas>
+        </div>
+    </section>
+
+    <!-- ========== FUZZY EXPERT SYSTEM MODEL ========== -->
+    <section id="model" class="section">
+        <div class="container">
+            <h2 class="section-title">Fuzzy Expert System Model</h2>
+            <p class="section-subtitle">Understanding the Core Components</p>
+
+            <div class="model-diagram">
+                <svg viewBox="0 0 1000 600" class="diagram-svg">
+                    <!-- Knowledge Base Box -->
+                    <rect x="50" y="100" width="180" height="100" class="component-box"/>
+                    <text x="140" y="145" class="component-title">Knowledge Base</text>
+                    <text x="60" y="165" class="component-text">Fuzzy Rules</text>
+                    <text x="60" y="185" class="component-text">Membership Functions</text>
+
+                    <!-- Knowledge Acquisition Box -->
+                    <rect x="280" y="100" width="180" height="100" class="component-box"/>
+                    <text x="370" y="145" class="component-title">Knowledge Acq.</text>
+                    <text x="290" y="165" class="component-text">Documentation</text>
+                    <text x="290" y="185" class="component-text">Design Process</text>
+
+                    <!-- Fuzzification Box -->
+                    <rect x="510" y="50" width="180" height="100" class="component-box"/>
+                    <text x="600" y="95" class="component-title">Fuzzification</text>
+                    <text x="520" y="115" class="component-text">Crisp Input</text>
+                    <text x="520" y="135" class="component-text">→ Fuzzy Values</text>
+
+                    <!-- Fuzzy Inference Box -->
+                    <rect x="740" y="100" width="180" height="100" class="component-box"/>
+                    <text x="830" y="140" class="component-title">Inference Engine</text>
+                    <text x="750" y="160" class="component-text">Apply Rules</text>
+                    <text x="750" y="180" class="component-text">Generate Output</text>
+
+                    <!-- Aggregation Box -->
+                    <rect x="510" y="250" width="180" height="100" class="component-box"/>
+                    <text x="600" y="295" class="component-title">Aggregation</text>
+                    <text x="520" y="315" class="component-text">Combine Outputs</text>
+                    <text x="520" y="335" class="component-text">Single Fuzzy Set</text>
+
+                    <!-- Defuzzification Box -->
+                    <rect x="510" y="400" width="180" height="100" class="component-box"/>
+                    <text x="600" y="445" class="component-title">Defuzzification</text>
+                    <text x="520" y="465" class="component-text">Fuzzy Value</text>
+                    <text x="520" y="485" class="component-text">→ Crisp Output</text>
+
+                    <!-- Arrows -->
+                    <line x1="230" y1="150" x2="280" y2="150" class="arrow-line" marker-end="url(#arrowhead)"/>
+                    <line x1="460" y1="150" x2="510" y2="120" class="arrow-line" marker-end="url(#arrowhead)"/>
+                    <line x1="600" y1="150" x2="600" y2="250" class="arrow-line" marker-end="url(#arrowhead)"/>
+                    <line x1="600" y1="350" x2="600" y2="400" class="arrow-line" marker-end="url(#arrowhead)"/>
+                    <line x1="740" y1="150" x2="680" y2="280" class="arrow-line" marker-end="url(#arrowhead)"/>
+
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#4f46e5"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Component Details -->
+            <div class="components-grid">
+                <div class="component-detail">
+                    <h3>Knowledge Base</h3>
+                    <p>Contains 9 fuzzy rules for room efficiency and 5 fuzzy sets for global efficiency. Represents domain expertise in energy optimization.</p>
+                </div>
+                <div class="component-detail">
+                    <h3>Knowledge Acquisition</h3>
+                    <p>Documents how knowledge was gathered through parameter selection based on real-life device constraints and energy consumption patterns.</p>
+                </div>
+                <div class="component-detail">
+                    <h3>Fuzzification</h3>
+                    <p>Converts crisp input values (AC temp, fan speed, plug load, lamp intensity) into fuzzy membership values using triangular membership functions.</p>
+                </div>
+                <div class="component-detail">
+                    <h3>Inference Engine</h3>
+                    <p>Applies the Mamdani MIN operator to evaluate fuzzy rules and generate fuzzy outputs based on the current input state.</p>
+                </div>
+                <div class="component-detail">
+                    <h3>Aggregation</h3>
+                    <p>Combines outputs from multiple fuzzy rules using the MAX operator to create a unified fuzzy output set for each category.</p>
+                </div>
+                <div class="component-detail">
+                    <h3>Defuzzification</h3>
+                    <p>Converts aggregated fuzzy outputs into crisp efficiency scores (0-100%) using the Centroid (Center of Gravity) method.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KNOWLEDGE ACQUISITION ========== -->
+    <section id="knowledge" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Knowledge Acquisition</h2>
+            <p class="section-subtitle">Decision-Making Process & Parameter Selection</p>
+
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <h3>AC Temperature (16-28°C)</h3>
+                    <p><strong>Source:</strong> Real-life device constraints</p>
+                    <p>Typical air conditioner remote controllers have temperature ranges between 16°C and 28°C. Below 16°C is unsafe/unusable, above 28°C provides minimal cooling.</p>
+                    <div class="membership-ranges">
+                        <span class="range-tag">Inefficient: 15-20°C</span>
+                        <span class="range-tag">Balanced: 18-24°C</span>
+                        <span class="range-tag">Efficient: 22-29°C</span>
+                    </div>
+                </div>
+
+                <div class="knowledge-card">
+                    <h3>Fan Speed (0-5)</h3>
+                    <p><strong>Source:</strong> Real-life device constraints</p>
+                    <p>Standard exhaust fans and HVAC systems typically have 5-level speed controls. Level 0 = off, Level 5 = maximum ventilation capacity.</p>
+                    <div class="membership-ranges">
+                        <span class="range-tag">Low: 0-1.5</span>
+                        <span class="range-tag">Moderate: 1-3.5</span>
+                        <span class="range-tag">High: 3-6</span>
+                    </div>
+                </div>
+
+                <div class="knowledge-card">
+                    <h3>Plug Load (0-3000W)</h3>
+                    <p><strong>Source:</strong> Typical household appliances</p>
+                    <p>Research-based estimation of household appliance consumption: Microwave (~1000W), Heater (~2000W), Multiple appliances (~3000W max safe load).</p>
+                    <div class="membership-ranges">
+                        <span class="range-tag">Low: 0-500W</span>
+                        <span class="range-tag">Active: 400-1800W</span>
+                        <span class="range-tag">Heavy: 1500-3100W</span>
+                    </div>
+                </div>
+
+                <div class="knowledge-card">
+                    <h3>Lamp Intensity (0-100%)</h3>
+                    <p><strong>Source:</strong> Smart lighting systems</p>
+                    <p>Modern smart lights and dimmers allow continuous intensity control. Assumption: intensity can be controlled from 0-100%, though traditional lights are on/off.</p>
+                    <div class="membership-ranges">
+                        <span class="range-tag">Dim: 0-35%</span>
+                        <span class="range-tag">Standard: 30-75%</span>
+                        <span class="range-tag">Bright: 65-105%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rule Design Process -->
+            <div class="rule-design">
+                <h3>Fuzzy Rule Design Process</h3>
+                <p>9 rules designed across 3 categories to capture dominant energy patterns:</p>
+                <div class="rules-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Rule Count</th>
+                                <th>Logic Pattern</th>
+                                <th>Example Rule</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Poor Efficiency</td>
+                                <td>3 rules</td>
+                                <td>High consumption + Wasteful cooling</td>
+                                <td>IF (AC Inefficient) AND (Plug Heavy) AND (Lamp Bright) THEN Poor</td>
+                            </tr>
+                            <tr>
+                                <td>Excellent Efficiency</td>
+                                <td>3 rules</td>
+                                <td>Low consumption + Efficient cooling</td>
+                                <td>IF (AC Efficient) AND (Plug Low) AND (Lamp Dim) THEN Excellent</td>
+                            </tr>
+                            <tr>
+                                <td>Average Efficiency</td>
+                                <td>3 rules</td>
+                                <td>Balanced/Mixed conditions</td>
+                                <td>IF (Fan Moderate) AND (Plug Active) AND (Lamp Standard) THEN Average</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== IMPLEMENTATION ========== -->
+    <section id="implementation" class="section">
+        <div class="container">
+            <h2 class="section-title">Implementation</h2>
+            <p class="section-subtitle">Detailed Process Flow</p>
+
+            <div class="implementation-grid">
+                <!-- Fuzzification -->
+                <div class="impl-card">
+                    <h3>1. Fuzzification</h3>
+                    <p><strong>Goal:</strong> Convert crisp inputs to fuzzy values using triangular membership functions (trimf).</p>
+                    <div class="code-block">
+                        <pre>trimf(x, a, b, c) = max(0, min((x-a)/(b-a), (c-x)/(c-b)))</pre>
+                    </div>
+                    <p><strong>Input Variables:</strong></p>
+                    <ul>
+                        <li>AC Temperature (16-28°C) → 3 fuzzy sets</li>
+                        <li>Fan Speed (0-5) → 3 fuzzy sets</li>
+                        <li>Plug Load (0-3000W) → 3 fuzzy sets</li>
+                        <li>Lamp Intensity (0-100%) → 3 fuzzy sets</li>
+                    </ul>
+                </div>
+
+                <!-- Rule Evaluation -->
+                <div class="impl-card">
+                    <h3>2. Rule Evaluation</h3>
+                    <p><strong>Goal:</strong> Apply Mamdani MIN operator to evaluate fuzzy rules.</p>
+                    <div class="code-block">
+                        <pre>Rule output = min(μ_input1, μ_input2, μ_input3)</pre>
+                    </div>
+                    <p><strong>Example Rule Evaluation:</strong></p>
+                    <pre class="example">IF (AC=ineff:0.7) AND (Plug=heavy:0.8) AND (Lamp=bright:0.9)
+THEN Poor = min(0.7, 0.8, 0.9) = 0.7</pre>
+                </div>
+
+                <!-- Aggregation -->
+                <div class="impl-card">
+                    <h3>3. Aggregation</h3>
+                    <p><strong>Goal:</strong> Combine outputs from multiple rules using MAX operator.</p>
+                    <div class="code-block">
+                        <pre>μ_category = max(rule1_output, rule2_output, rule3_output)</pre>
+                    </div>
+                    <p><strong>Example Aggregation:</strong></p>
+                    <pre class="example">Poor_strength = max(0.7, 0.6, 0.8) = 0.8
+Average_strength = max(0.4, 0.5) = 0.5
+Excellent_strength = max(0.2, 0.3) = 0.3</pre>
+                </div>
+
+                <!-- Defuzzification -->
+                <div class="impl-card">
+                    <h3>4. Defuzzification</h3>
+                    <p><strong>Goal:</strong> Convert fuzzy outputs to crisp efficiency score using Centroid method.</p>
+                    <div class="code-block">
+                        <pre>Score = Σ(i × μ(i)) / Σ(μ(i))</pre>
+                    </div>
+                    <p><strong>Process:</strong> Integrate over output range [0-100%] using 10% steps to find center of gravity.</p>
+                </div>
+            </div>
+
+            <!-- Visualization of Process -->
+            <div class="visualization">
+                <h3>Live Process Visualization</h3>
+                <div class="vis-container">
+                    <div class="vis-section">
+                        <h4>Input Membership Functions</h4>
+                        <canvas id="implementationChart" width="600" height="300"></canvas>
+                    </div>
+                    <div class="vis-section">
+                        <h4>Output Membership Functions</h4>
+                        <canvas id="outputChart" width="600" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== INTEGRATION ========== -->
+    <section id="integration" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Integration</h2>
+            <p class="section-subtitle">How Components Work Together</p>
+
+            <div class="integration-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h4>Input Reception</h4>
+                    <p>System receives crisp values from 4 input sources (AC, Fan, Plug, Lamp)</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h4>Fuzzification</h4>
+                    <p>Convert each input to membership values using fuzzy sets</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h4>Rule Evaluation</h4>
+                    <p>Apply 9 rules using MIN operator on membership values</p>
+                </div>
+            </div>
+
+            <div class="integration-flow">
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h4>Aggregation</h4>
+                    <p>Combine rules in 3 categories (Poor/Average/Excellent) using MAX</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <h4>Defuzzification</h4>
+                    <p>Calculate crisp efficiency score (0-100%) using Centroid method</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <h4>Output</h4>
+                    <p>Room efficiency score feeds to Level 2 aggregation</p>
+                </div>
+            </div>
+
+            <div class="integration-hierarchy">
+                <h3>Hierarchical Architecture</h3>
+                <div class="hierarchy-diagram">
+                    <div class="level-2">
+                        <div class="box">Global Efficiency (Arithmetic Average)</div>
+                    </div>
+                    <div class="level-1">
+                        <div class="box">Room 1 Fuzzy Inference</div>
+                        <div class="box">Room 2 Fuzzy Inference</div>
+                        <div class="box">Room 3 Fuzzy Inference</div>
+                        <div class="box">Room 4 Fuzzy Inference</div>
+                    </div>
+                </div>
+                <p>Room-level fuzzy inference outputs are averaged at Level 2 to determine global house efficiency (0-100%).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RESULTS & TEST ANALYSIS ========== -->
+    <section id="results" class="section">
+        <div class="container">
+            <h2 class="section-title">Results & Test Analysis</h2>
+            <p class="section-subtitle">Edge Case Testing Across All 4 Rooms</p>
+
+            <!-- Test Scenario Selection -->
+            <div class="scenario-selector">
+                <button class="scenario-btn active" onclick="showScenario('A')">Scenario A: Minimum</button>
+                <button class="scenario-btn" onclick="showScenario('B')">Scenario B: Maximum</button>
+                <button class="scenario-btn" onclick="showScenario('C')">Scenario C: Balanced</button>
+            </div>
+
+            <!-- Scenario A -->
+            <div id="scenarioA" class="scenario-content active">
+                <h3>Scenario A: All Minimum (Most Efficient)</h3>
+                <p><strong>Input Values:</strong> AC=28°C, Fan=0, Plug=0W, Lamp=0%</p>
+                <p class="scenario-description">This scenario tests the system's behavior when all appliances are at minimum or off. Expected: Highest efficiency scores.</p>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h4>Living Room</h4>
+                        <div class="score-display" id="scoreA1">-</div>
+                        <canvas id="chartA1" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisA1"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 1</h4>
+                        <div class="score-display" id="scoreA2">-</div>
+                        <canvas id="chartA2" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisA2"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 2</h4>
+                        <div class="score-display" id="scoreA3">-</div>
+                        <canvas id="chartA3" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisA3"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Kitchen</h4>
+                        <div class="score-display" id="scoreA4">-</div>
+                        <canvas id="chartA4" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisA4"></div>
+                    </div>
+                </div>
+
+                <div class="global-result">
+                    <h4>Global House Efficiency</h4>
+                    <canvas id="globalChartA" width="800" height="250"></canvas>
+                    <div class="global-score" id="globalScoreA"></div>
+                </div>
+            </div>
+
+            <!-- Scenario B -->
+            <div id="scenarioB" class="scenario-content">
+                <h3>Scenario B: All Maximum (Least Efficient)</h3>
+                <p><strong>Input Values:</strong> AC=16°C, Fan=5, Plug=3000W, Lamp=100%</p>
+                <p class="scenario-description">This scenario tests the system's response to maximum consumption across all inputs. Expected: Lowest efficiency scores.</p>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h4>Living Room</h4>
+                        <div class="score-display" id="scoreB1">-</div>
+                        <canvas id="chartB1" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisB1"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 1</h4>
+                        <div class="score-display" id="scoreB2">-</div>
+                        <canvas id="chartB2" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisB2"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 2</h4>
+                        <div class="score-display" id="scoreB3">-</div>
+                        <canvas id="chartB3" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisB3"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Kitchen</h4>
+                        <div class="score-display" id="scoreB4">-</div>
+                        <canvas id="chartB4" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisB4"></div>
+                    </div>
+                </div>
+
+                <div class="global-result">
+                    <h4>Global House Efficiency</h4>
+                    <canvas id="globalChartB" width="800" height="250"></canvas>
+                    <div class="global-score" id="globalScoreB"></div>
+                </div>
+            </div>
+
+            <!-- Scenario C -->
+            <div id="scenarioC" class="scenario-content">
+                <h3>Scenario C: Balanced Usage (Typical Day)</h3>
+                <p><strong>Input Values:</strong> AC=22°C, Fan=2, Plug=1500W, Lamp=50%</p>
+                <p class="scenario-description">This realistic scenario represents typical daytime usage with comfortable cooling, moderate fan speed, active appliances, and standard lighting.</p>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h4>Living Room</h4>
+                        <div class="score-display" id="scoreC1">-</div>
+                        <canvas id="chartC1" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisC1"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 1</h4>
+                        <div class="score-display" id="scoreC2">-</div>
+                        <canvas id="chartC2" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisC2"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Bedroom 2</h4>
+                        <div class="score-display" id="scoreC3">-</div>
+                        <canvas id="chartC3" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisC3"></div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Kitchen</h4>
+                        <div class="score-display" id="scoreC4">-</div>
+                        <canvas id="chartC4" width="200" height="150"></canvas>
+                        <div class="analysis" id="analysisC4"></div>
+                    </div>
+                </div>
+
+                <div class="global-result">
+                    <h4>Global House Efficiency</h4>
+                    <canvas id="globalChartC" width="800" height="250"></canvas>
+                    <div class="global-score" id="globalScoreC"></div>
+                </div>
+            </div>
+
+            <!-- Comparative Analysis -->
+            <div class="comparative-analysis">
+                <h3>Comparative Analysis</h3>
+                <div class="comparison-chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+                <div class="analysis-text">
+                    <h4>Key Findings:</h4>
+                    <ul>
+                        <li><strong>Scenario A (Minimum):</strong> Demonstrates maximum efficiency potential with all systems at minimal load. All rooms achieve high efficiency scores (90%+).</li>
+                        <li><strong>Scenario B (Maximum):</strong> Shows system response under maximum stress. All rooms experience low efficiency scores (15-25%), indicating high energy waste.</li>
+                        <li><strong>Scenario C (Balanced):</strong> Represents realistic daily usage with moderate efficiency scores (45-60%), showing practical system behavior.</li>
+                        <li><strong>System Consistency:</strong> The fuzzy logic system demonstrates consistent rule application across all scenarios and rooms.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONCLUSION ========== -->
+    <section id="conclusion" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Conclusion</h2>
+            
+            <div class="conclusion-content">
+                <h3>Summary of Findings</h3>
+                <p>
+                    The Hierarchical Fuzzy Inference System (HFIS) demonstrates an effective approach to multi-room energy efficiency analysis. 
+                    By combining fuzzy logic principles with hierarchical aggregation, the system provides nuanced efficiency assessments based on 
+                    multiple interrelated appliance parameters.
+                </p>
+
+                <h3>System Effectiveness</h3>
+                <div class="effectiveness-grid">
+                    <div class="effectiveness-item">
+                        <h4>✓ Rule Completeness</h4>
+                        <p>9 rules strategically cover 3 primary efficiency categories, balancing comprehensiveness with interpretability. While representing only ~11% of theoretical combinations, the rules capture dominant energy patterns.</p>
+                    </div>
+                    <div class="effectiveness-item">
+                        <h4>✓ Input Handling</h4>
+                        <p>Triangular membership functions successfully represent real-world constraints from AC remote controllers (16-28°C), fan speed controls (0-5), and household appliance consumption (0-3000W).</p>
+                    </div>
+                    <div class="effectiveness-item">
+                        <h4>✓ Inference Quality</h4>
+                        <p>Mamdani MIN operator correctly identifies rule triggering conditions, while Centroid defuzzification produces smooth, continuous efficiency scores responsive to input changes.</p>
+                    </div>
+                    <div class="effectiveness-item">
+                        <h4>✓ Hierarchical Integration</h4>
+                        <p>Two-level architecture effectively isolates room-level complexity while providing global house-level insights through simple arithmetic averaging.</p>
+                    </div>
+                </div>
+
+                <h3>Practical Applications</h3>
+                <ul class="applications-list">
+                    <li><strong>Smart Home Management:</strong> Real-time monitoring of multi-room energy efficiency for homeowners</li>
+                    <li><strong>Energy Optimization:</strong> Identification of efficiency bottlenecks and consumption patterns</li>
+                    <li><strong>Automated Control:</strong> Foundation for automated systems to reduce energy waste</li>
+                    <li><strong>User Feedback:</strong> Intuitive efficiency metrics (0-100% scores) for user education</li>
+                </ul>
+
+                <h3>Future Enhancements</h3>
+                <ul class="enhancements-list">
+                    <li>Expansion of fuzzy rule set for finer granularity</li>
+                    <li>Implementation of Level 2 fuzzy inference (currently arithmetic average)</li>
+                    <li>Machine learning optimization of membership function parameters</li>
+                    <li>Temporal analysis tracking efficiency trends over time</li>
+                    <li>Integration with smart home devices for automated control</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== REFERENCES ========== -->
+    <section id="references" class="section">
+        <div class="container">
+            <h2 class="section-title">References</h2>
+            
+            <div class="references-list">
+                <h3>Academic & Technical Sources</h3>
+                
+                <div class="reference-item">
+                    <p><strong>Mamdani, E. H., & Assilian, S. (1975).</strong> An experiment in linguistic synthesis with a fuzzy logic controller. <em>International Journal of Human-Computer Studies, 51</em>(2), 135-147.</p>
+                    <p class="ref-note">Foundational paper on Mamdani-type fuzzy inference systems and fuzzy rule-based control.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>Zadeh, L. A. (1965).</strong> Fuzzy sets. <em>Information and Control, 8</em>(3), 338-353.</p>
+                    <p class="ref-note">Original introduction of fuzzy set theory, providing theoretical foundation for all fuzzy logic systems.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>Klir, G. J., & Yuan, B. (1995).</strong> <em>Fuzzy sets and fuzzy logic: Theory and applications.</em> Prentice Hall.</p>
+                    <p class="ref-note">Comprehensive textbook covering fuzzy logic principles, membership functions, and defuzzification methods.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>Ross, T. J. (2010).</strong> <em>Fuzzy logic with engineering applications</em> (3rd ed.). John Wiley & Sons.</p>
+                    <p class="ref-note">Practical guide to fuzzy logic implementation, including triangular membership functions and Centroid defuzzification.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>Takagi, T., & Sugeno, M. (1985).</strong> Fuzzy identification of systems and its applications to modeling and control. <em>IEEE Transactions on Systems, Man, and Cybernetics, SMC-15</em>(1), 116-132.</p>
+                    <p class="ref-note">Introduction to Sugeno-type fuzzy inference as alternative to Mamdani approach (for reference only).</p>
+                </div>
+
+                <h3>Domain-Specific References</h3>
+
+                <div class="reference-item">
+                    <p><strong>Pérez-Lombard, L., Ortiz, J., & Pout, C. (2008).</strong> A review on buildings energy consumption information. <em>Energy and Buildings, 40</em>(3), 394-398.</p>
+                    <p class="ref-note">Analysis of household energy consumption patterns and smart building management systems.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>International Energy Agency (IEA, 2021).</strong> <em>Smart homes and demand response in buildings.</em> Technology Collaboration Programme on Demand Side Management.</p>
+                    <p class="ref-note">Global perspective on energy efficiency in residential buildings and intelligent control systems.</p>
+                </div>
+
+                <h3>Implementation References</h3>
+
+                <div class="reference-item">
+                    <p><strong>Chart.js Documentation (2024).</strong> Retrieved from https://www.chartjs.org/</p>
+                    <p class="ref-note">JavaScript charting library used for data visualization in HFIS presentation.</p>
+                </div>
+
+                <div class="reference-item">
+                    <p><strong>Tailwind CSS Documentation (2024).</strong> Retrieved from https://tailwindcss.com/</p>
+                    <p class="ref-note">Utility-first CSS framework used for responsive web design in HFIS dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Hierarchical Fuzzy Inference System Presentation | ISP568 - Fuzzy Logic Systems</p>
+            <p>Comprehensive analysis of multi-room energy efficiency using Mamdani fuzzy logic inference</p>
+        </div>
+    </footer>
+
+    <script src="presentation.js"></script>
+</body>
+</html>
